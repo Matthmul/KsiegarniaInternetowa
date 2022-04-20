@@ -68,7 +68,7 @@ router.post('/edit/:id', (req, res) => {
     book.author = req.body.author;
     book.body = req.body.body;
     let query = { _id: req.params.id }
-    Book.update(query, book, (err) => {
+    Book.updateOne(query, book, (err) => {
         if (err) {
             console.log(err)
         } else {
@@ -89,8 +89,7 @@ router.post('/:id', (req, res) => {
         borrowedBy: req.user._id
     };
     Book.findById(req.params.id, (err, book) => {
-        console.log('borrowed')
-        Book.update(query, update, (err) => {
+        Book.updateOne(query, update, (err) => {
             if (err) {
                 console.log(err)
             }
@@ -110,8 +109,7 @@ router.put('/:id', (req, res) => {
         borrowedBy: ""
     };
     Book.findById(req.params.id, (err, book) => {
-        console.log('borrowed')
-        Book.update(query, update, (err) => {
+        Book.updateOne(query, update, (err) => {
             if (err) {
                 console.log(err)
             }

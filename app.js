@@ -84,10 +84,16 @@ app.get('/', (req, res) => {
 //Route Files
 let books = require('./routes/books');
 let users = require('./routes/users');
+const { maxHeaderSize } = require('http');
 app.use('/books', books);
 app.use('/users', users);
+
+//Route 404
+app.use((req, res) => {
+    res.redirect("/");
+});
 
 //Start Server
 app.listen(3000, () => {
     console.log('Server started on port 3000')
-})
+});

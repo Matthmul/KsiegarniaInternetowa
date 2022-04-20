@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    br
+    h1 Books list
+    br
+    ul.list-group
+        each book, i in books
+            if book.isBorrowed == true
+                li.list-group-item.text-unavailable
+                    a(href="/books/"+book._id) #{book.title} 
+                    p Currently unavailable
+            else
+                li.list-group-item.book-available
+                    a(href="/books/"+book._id) #{book.title}  

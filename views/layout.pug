@@ -1,0 +1,39 @@
+doctype html
+html
+    head
+        title Library
+        link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    body
+        .container-fluid
+            nav(class="navbar navbar-expand-lg navbar-light bg-light")
+                ul(class="navbar-nav mr-auto")
+                    li(class="nav-item")
+                        a(href="/"  class="nav-link") home
+                    if user
+                        li(class="nav-item")
+                            a(href="/books/add"  class="nav-link") add book
+                    if !user
+                        li(class="nav-item")
+                            a(href="/users/register" class="nav-link") register
+                        li(class="nav-item")
+                            a(href="/users/login" class="nav-link") login
+                    if user
+                        li(class="nav-item")
+                            a(href="/users/logout" class="nav-link ") logout
+                        li(class="nav-item nav-link") Hello #{user.name}
+                        if user.admin == true
+                            li(class="nav-item nav-link") You have admin permissions
+                    
+        .container
+            !=messages('message', locals)
+            if errors
+                div(class="alert alert-danger") Please fill every field
+                    
+            block content
+            br
+            hr
+            footer
+                p Copyright &copy; 2022 Eminem Mularski
+        script(src='/bower_components/jquery/dist/jquery.js')  
+        script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+        script(src="/bower_components/js/main.js")

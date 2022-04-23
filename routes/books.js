@@ -128,7 +128,7 @@ router.delete('/:id', (req, res) => {
         if (req.user.admin !== true) {
             res.status(500).send();
         } else {
-            Book.remove(query, (err) => {
+            Book.deleteOne(query, (err) => {
                 if (err) {
                     console.log(err)
                 }
